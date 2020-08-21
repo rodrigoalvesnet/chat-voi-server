@@ -23,44 +23,9 @@ export default class SuperHeroes {
     // initialize the superheroes
     const tmp: Array<ISuperHero> = [
       {
-        name: "Super-Man",
+        name: "Name",
         avatar:
-          "https://superherotar.framiq.com/assets/examples/superherotar00.png",
-        isTaken: false,
-        inCall: false
-      },
-      {
-        name: "Iron-Man",
-        avatar:
-          "https://superherotar.framiq.com/assets/examples/superherotar05.png",
-        isTaken: false,
-        inCall: false
-      },
-      {
-        name: "Bat-Man",
-        avatar:
-          "https://superherotar.framiq.com/assets/examples/superherotar02.png",
-        isTaken: false,
-        inCall: false
-      },
-      {
-        name: "Wonder-Woman",
-        avatar:
-          "https://superherotar.framiq.com/assets/examples/superherotar01.png",
-        isTaken: false,
-        inCall: false
-      },
-      {
-        name: "Black-Widow",
-        avatar:
-          "https://superherotar.framiq.com/assets/examples/superherotar07.png",
-        isTaken: false,
-        inCall: false
-      },
-      {
-        name: "Elektra",
-        avatar:
-          "https://superherotar.framiq.com/assets/examples/superherotar06.png",
+          "",
         isTaken: false,
         inCall: false
       }
@@ -82,10 +47,21 @@ export default class SuperHeroes {
     if (this.data.has(superHeroName)) {
       return this.data.get(superHeroName)!;
     }
-    return null;
+    var _newUser = {
+      name: superHeroName,
+      avatar:
+        "https://www.prephoops.com/wp-content/themes/prepsports/resources/assets/images/default-user.png",
+      isTaken: false,
+      inCall: false
+    };
+    this.data.set(superHeroName, _newUser);
+    console.log('getSuperHero ' + superHeroName);
+    this.data.get(superHeroName)!;
+    return _newUser;
   }
 
   assignSuperHero(io: Server, socket: Socket, superHeroName: string) {
+    console.log('assignSuperHero ' + superHeroName);
     let superHero: ISuperHero | null = this.getSuperHero(superHeroName); // get the super hero by name
 
     if (superHero) {
